@@ -1,0 +1,28 @@
+[package]
+name = "dash-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+time = { version = "0.3.28", features = ["serde", "parsing", "formatting", "local-offset"] }
+actix-web = "4.9.0"
+dotenv = "0.15.0"
+log = "0.4.22"
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = "1.0.128"
+thiserror = "1.0.63"
+tokio = { version = "1.40.0", features = ["full"] }
+sqlx = { version = "0.7.2", features = ["macros", "runtime-tokio-rustls", "postgres", "time", "rust_decimal"] }
+rust_decimal = { version = "1.36.0", dfeatures = ["db-postgres"] }
+
+minijinja = { version = "2.0.3", features = ["loader", "builtins"] }
+minijinja-contrib = { version = "2.0.3" }
+once_cell = "1.19.0"
+
+env_logger = "0.11.5"
+reqwest = { version = "0.12.7", features = ["json", "multipart"] }
+actix-files = "0.6.6"
+
