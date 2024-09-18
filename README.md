@@ -37,7 +37,7 @@ watch
 
 ```html
 // adicione um novo template html na pasta templates
-{% for fornecedor in fornecedores%}
+{% for fornecedor in fornecedores %}
     <h1>{{ fornecedor.nome }}</h1>
     <h3>{{ fornecedor.endereco }}</h3>
 {% endfor %}
@@ -82,8 +82,6 @@ watch
 +        crate::view::vendas::view_vendas(vendas.unwrap())
 +    }
 ```
-
-```diff
 
 ```dif
 //abra o arquivo routes
