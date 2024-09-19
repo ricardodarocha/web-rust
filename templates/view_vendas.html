@@ -1,4 +1,56 @@
-{% for venda in vendas%}
-    <h1>{{ venda.cliente_nome }}</h1>
-    <h3>{{ venda.total_vendido }}</h3>
-{% endfor %}
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Gráfico de Vendas</h2>
+<canvas id="salesChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    async function fetchSalesData() {
+            try {
+                const response = await fetch('/vendas/json');
+                const salesData = await response.json();
+                const labels = salesData.map(v => v.cliente_nome);
+                const data = salesData.map(v => v.total_vendido);
+
+                const ctx = document.getElementById('salesChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Vendas',
+                            data: data,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2,
+                            fill: false,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Cliente'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Valor (R$)'
+                                },
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Erro ao buscar dados de vendas:', error);
+            }
+        }
+
+        // Chama a função ao carregar a página
+        fetchSalesData();
+    </script>
+</script>
+{% endblock %}

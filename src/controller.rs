@@ -59,7 +59,7 @@ async fn get_vendas_json(pool: web::Data<AppState>,
     HttpResponse::Ok().json(serde_json::json!({"status": "success", "message": MESSAGE}))
 }
 
-#[get("/")]
+#[get("")]
 async fn get_vendas(pool: web::Data<AppState>,
     // query: web::Query<QueryParams>,
     ) 
