@@ -83,7 +83,7 @@ watch
 +    }
 ```
 
-```dif
+```diff
 //abra o arquivo routes
 //registre o servico
 +             .service(get_vendas)
